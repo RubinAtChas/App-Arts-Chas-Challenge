@@ -1,10 +1,38 @@
 import express from 'express';
+import pool from './db.js';  
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
 // Middleware för konvertera till json data
 app.use(express.json());
+// Optional test to confirm DB connection:
+try {
+  const client = await pool.connect();
+  console.log('✅ Connected to PostgreSQL');
+  client.release();
+} catch (err) {
+  console.error('❌ PostgreSQL connection error:', err);
+}
+// get all users from DB
+app.get('/api/get-users', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM users');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+// get all flowers from DB
+app.get('/api/get-flowers', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM flowers');
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
 
 // Test endpoint för server debugging
 app.get('/', (req, res) => {
