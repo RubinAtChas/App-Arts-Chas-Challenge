@@ -3,21 +3,15 @@
 #include <Arduino.h>
 #include <WiFiS3.h>
 #include "arduino_secrets.h"
-//  YOU NEED THIS IN A SEPERATE "arduino_secrets.h" FILE OR IT WILL NOT WORK/COMPILE
-//
-//  -----  WiFi Settings  ----
-//  const char SSID[] = "SSID_NAME_HERE";           // your WiFi network name
-//  const char PASSWORD[] = "WIFI_PASSWORD_HERE";   // your WiFi password
-#define WIFI_RECONNECTION_ATTEMPTS 10               // Used in connectToWifi()
-#define WIFI_TIME_BETWEEN_RECONNECTION 1000         // Defined in milliseconds. Used in connectToWifi()
-/**
- * @brief Meant to be used in setup() and does NOT handle errors
- */
+
+#define WIFI_RECONNECTION_ATTEMPTS 10
+#define WIFI_TIME_BETWEEN_RECONNECTION 1000
+
 void ConnectToWifi()
 {
-    WiFi.disconnect(); // Ensures a clean start
-    WiFi.end();        // Hard reset of the WiFi module
-    delay(1000);       // Give it time(ms) to reset
+    WiFi.disconnect();
+    WiFi.end();
+    delay(1000);
     int numberOfAttempts = 0;
     while (WiFi.status() != WL_CONNECTED)
     {
@@ -44,4 +38,13 @@ void ConnectToWifi()
     delay(WIFI_TIME_BETWEEN_RECONNECTION);
     }
 }
+
+void reconnectToWifi()
+{
+  if (WiFi.status() != WL_CONNECTED)
+  {
+    ConnectToWifi();
+  }
+}
+
 #endif // WIFI_ARDUINO_H
