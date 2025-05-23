@@ -4,7 +4,7 @@
 #include "WIFI_ARDUINO.h"
 #include <WiFiS3.h>
 #include <ArduinoHttpClient.h>
-#include <WiFiSSLClient.h>
+#include <WiFiClient.h>
 #include "http.h"
 
 // --- LTR-303 Light Sensor ---

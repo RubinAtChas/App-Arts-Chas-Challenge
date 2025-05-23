@@ -3,3 +3,5 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
+.vscode/src/arduino_secrets.h
+ChasChallenge1.code-workspace
