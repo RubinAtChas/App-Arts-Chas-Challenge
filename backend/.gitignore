@@ -1,0 +1,41 @@
+# Node modules
+node_modules/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# dotenv environment variables
+.env
+.env.test
+.env.production
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build output
+dist/
+build/
+
+# Optional npm cache directory
+.npm
+
+# IDE/editor specific
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Coverage and test output
+coverage/
+.nyc_output/
+
+# Express session files (if using file-based session store)
+sessions/
+
+
+swagger-output.json
