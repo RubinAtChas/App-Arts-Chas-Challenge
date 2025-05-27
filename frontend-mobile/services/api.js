@@ -43,13 +43,13 @@ export const apiLogin = async (email, password) => {
   }
 };
 
-export const fetchPlants = async (userId) => {
+export const fetchPlants = async (id) => {
   try {
     const token =
       Platform.OS === "web"
         ? await AsyncStorage.getItem("token")
         : await SecureStore.getItemAsync("token");
-    const response = await fetch(`${baseUrl}/api/${userId}/get-flowers`, {
+    const response = await fetch(`${baseUrl}/api/${id}/get-flowers`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -76,7 +76,6 @@ export const addPlant = async (name, id) => {
       },
       body: JSON.stringify({ flower_name: name }),
     });
-
     if (!response.ok) throw new Error("Fel vid hämtning av data.");
     return await response.json();
   } catch (error) {
@@ -94,6 +93,55 @@ export const addUser = async (name, password, email) => {
       },
       body: JSON.stringify({ name: name, password: password, email: email }),
     });
+    if (!response.ok) throw new Error("Fel vid hämtning av data.");
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export const removePlant = async (userId, plantId) => {
+  try {
+    const token =
+      Platform.OS === "web"
+        ? await AsyncStorage.getItem("token")
+        : await SecureStore.getItemAsync("token");
+    const response = await fetch(
+      `${baseUrl}/api/${userId}/remove-flower/${plantId}`,
+      {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-type": "application/json",
+        },
+      }
+    );
+    if (!response.ok) throw new Error("Fel vid borttagning av växt.");
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export const updatePlant = async (name, userId, plantId) => {
+  try {
+    const token =
+      Platform.OS === "web"
+        ? await AsyncStorage.getItem("token")
+        : await SecureStore.getItemAsync("token");
+    const response = await fetch(
+      `${baseUrl}/api/${userId}/update-flower/${plantId}`,
+      {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ flower_name: name }),
+      }
+    );
     if (!response.ok) throw new Error("Fel vid hämtning av data.");
     return await response.json();
   } catch (error) {

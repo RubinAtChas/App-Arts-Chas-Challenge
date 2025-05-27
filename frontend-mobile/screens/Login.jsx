@@ -13,6 +13,8 @@ import { useUser } from "../context/UserContext";
 import { apiLogin } from "../services/api";
 import { useNavigation } from "@react-navigation/native";
 
+// ...importer är samma
+
 const Login = () => {
   const navigation = useNavigation();
   const { loadUserFromToken } = useUser();
@@ -38,15 +40,26 @@ const Login = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Image source={require("../assets/icon-plant.png")} style={styles.icon} />
-      <View>
+    <SafeAreaView
+      style={styles.container}
+      accessible={true}
+      accessibilityLabel="Inloggningsskärm"
+    >
+      <Image
+        source={require("../assets/icon-plant.png")}
+        style={styles.icon}
+        accessibilityLabel="Appens ikon, en planta"
+      />
+      <View accessible={true}>
         <TextInput
           placeholder="E-post"
           keyboardType="email-address"
           style={styles.input}
           value={email}
           onChangeText={setEmail}
+          returnKeyType="next"
+          textContentType="emailAddress"
+          accessibilityLabel="Ange din e-postadress"
         />
         <TextInput
           placeholder="Lösenord"
@@ -54,21 +67,28 @@ const Login = () => {
           style={styles.input}
           value={password}
           onChangeText={setPassword}
+          returnKeyType="done"
+          textContentType="password"
+          accessibilityLabel="Ange ditt lösenord"
         />
         <BigButton
           title="Logga in"
           variant="accent"
           onPress={handleSubmit}
           styles={styles.logInBtn}
+          accessibilityLabel="Logga in med e-post och lösenord"
+          accessibilityRole="button"
         />
       </View>
-      <View style={styles.createContainer}>
+      <View style={styles.createContainer} accessible={true}>
         <Text style={styles.createText}>Har du inget konto?</Text>
         <BigButton
           title="Skapa ett konto"
           variant="secondary"
           onPress={handleNewAccount}
           styles={styles.createBtn}
+          accessibilityLabel="Skapa ett nytt konto"
+          accessibilityRole="button"
         />
       </View>
     </SafeAreaView>

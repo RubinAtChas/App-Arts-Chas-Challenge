@@ -7,7 +7,7 @@ if (Platform.OS === "android") {
 } else if (Platform.OS === "web") {
   baseUrl = "http://localhost:3000";
 } else {
-  baseUrl = "http://192.168.68.108:3000"; //Byt ut mot egen IP-adress
+  baseUrl = "http://192.168.68.105:3000"; //Byt ut mot egen IP-adress
 }
 
 export default baseUrl;

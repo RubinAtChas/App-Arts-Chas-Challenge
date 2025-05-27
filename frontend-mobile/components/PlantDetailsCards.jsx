@@ -2,10 +2,17 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 
 const PlantDetailsCards = ({ title, value }) => {
+  const displayValue = value ?? "Ej tillgänglig";
+
   return (
-    <View style={styles.card}>
+    <View
+      style={styles.card}
+      accessible={true}
+      accessibilityRole="summary"
+      accessibilityLabel={`${title}: ${displayValue}`}
+    >
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.value}>{value ?? "Ej tillgänglig"}</Text>
+      <Text style={styles.value}>{displayValue}</Text>
     </View>
   );
 };

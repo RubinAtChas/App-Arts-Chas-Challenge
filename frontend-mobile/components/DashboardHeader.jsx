@@ -4,8 +4,18 @@ import React from "react";
 const DashboardHeader = ({ url, user }) => {
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Image source={url} style={styles.headerIcon} />
+      <View
+        style={styles.header}
+        accessible={true}
+        accessibilityRole="header"
+        accessibilityLabel={`Hej, ${user}`}
+      >
+        <Image
+          source={url}
+          style={styles.headerIcon}
+          accessibilityLabel="Användarikon"
+          accessible={true}
+        />
         <Text style={styles.headerText}>Hej, {user}</Text>
       </View>
     </View>
@@ -32,6 +42,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFFFFF",
     borderColor: "#FFFFFF",
     borderWidth: 10,
-    borderRadius: "100%",
+    borderRadius: 100,
+    width: 50,
+    height: 50,
   },
 });

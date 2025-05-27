@@ -18,14 +18,27 @@ const CreateAccount = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.form}>
-        <Text style={styles.title}>Skapa en ny användare</Text>
+    <SafeAreaView
+      style={styles.container}
+      accessible={true}
+      accessibilityLabel="Skapa konto-skärm"
+    >
+      <View style={styles.form} accessible={true}>
+        <Text
+          style={styles.title}
+          accessibilityRole="header"
+          accessibilityLabel="Skapa en ny användare"
+        >
+          Skapa en ny användare
+        </Text>
         <TextInput
           placeholder="Namn"
           style={styles.input}
           value={name}
           onChangeText={setName}
+          returnKeyType="next"
+          textContentType="name"
+          accessibilityLabel="Ange ditt namn"
         />
         <TextInput
           placeholder="E-post"
@@ -33,6 +46,9 @@ const CreateAccount = () => {
           style={styles.input}
           value={email}
           onChangeText={setEmail}
+          returnKeyType="next"
+          textContentType="emailAddress"
+          accessibilityLabel="Ange din e-postadress"
         />
         <TextInput
           placeholder="Lösenord"
@@ -40,18 +56,25 @@ const CreateAccount = () => {
           style={styles.input}
           value={password}
           onChangeText={setPassword}
+          returnKeyType="done"
+          textContentType="password"
+          accessibilityLabel="Ange ett lösenord"
         />
         <BigButton
           title="Skapa ett konto"
           variant="accent"
           onPress={handleSubmit}
           styles={styles.createBtn}
+          accessibilityLabel="Skapa konto-knapp"
+          accessibilityRole="button"
         />
         <BigButton
           title="Avbryt"
           variant="secondary"
           onPress={() => navigation.goBack()}
           style={styles.button}
+          accessibilityLabel="Avbryt och gå tillbaka"
+          accessibilityRole="button"
         />
       </View>
     </SafeAreaView>
@@ -67,7 +90,7 @@ const styles = StyleSheet.create({
   },
   form: {
     borderRadius: 10,
-    padding: 30,
+    padding: 50,
   },
   title: {
     fontSize: 20,

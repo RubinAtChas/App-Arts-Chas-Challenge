@@ -10,7 +10,7 @@ export default class Timelines extends Component {
       {
         time: "1 Juni",
         title: "Tomat 1",
-        description: "Event 1 Description",
+        description: "Se över fuktnivån",
         icon: (
           <View
             style={{
@@ -29,7 +29,7 @@ export default class Timelines extends Component {
       {
         time: "2 Juni",
         title: "Citron 2",
-        description: "Event 2 Description",
+        description: "Se över näringsnivån",
         icon: (
           <View
             style={{
@@ -48,7 +48,7 @@ export default class Timelines extends Component {
       {
         time: "3 Juni",
         title: "Tomat 3",
-        description: "Event 3 Description",
+        description: "Se över fuktnivån",
         icon: (
           <View
             style={{
@@ -67,7 +67,7 @@ export default class Timelines extends Component {
       {
         time: "4 Juni",
         title: "Citron 4",
-        description: "Event 4 Description",
+        description: "Se över näringsnivån",
         icon: (
           <View
             style={{
@@ -86,7 +86,7 @@ export default class Timelines extends Component {
       {
         time: "5 Juni",
         title: "Tomat 5",
-        description: "Event 5 Description",
+        description: "Se över fuktnivån",
         icon: (
           <View
             style={{

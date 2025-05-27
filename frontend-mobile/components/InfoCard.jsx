@@ -1,9 +1,21 @@
 import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 
-const InfoCard = ({ title, info, image }) => {
+const InfoCard = ({
+  title,
+  info,
+  image,
+  accessible,
+  accessibilityLabel,
+  accessibilityRole,
+}) => {
   return (
-    <View style={styles.card}>
+    <View
+      style={styles.card}
+      accessible={accessible}
+      accessibilityLabel={accessibilityLabel}
+      accessibilityRole={accessibilityRole ?? "summary"}
+    >
       <Text style={styles.title}>{title}</Text>
       <View style={styles.content}>
         <Image source={image} style={styles.icon} />

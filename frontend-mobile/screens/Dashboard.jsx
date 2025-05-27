@@ -10,7 +10,11 @@ const Dashboard = () => {
   const { username } = useUser();
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={styles.container}
+      accessible={true}
+      accessibilityLabel="Dashboard"
+    >
       <FlatList
         ListHeaderComponent={
           <>
@@ -23,9 +27,9 @@ const Dashboard = () => {
             <Timelines />
           </>
         }
-        data={[]} 
+        data={[]}
         renderItem={null}
-        keyExtractor={() => "dummy"} 
+        keyExtractor={() => "dummy"}
       />
     </SafeAreaView>
   );

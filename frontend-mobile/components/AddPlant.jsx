@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   },
   form: {
     borderRadius: 10,
-    padding: 30,
+    padding: 50,
   },
   title: {
     fontSize: 20,

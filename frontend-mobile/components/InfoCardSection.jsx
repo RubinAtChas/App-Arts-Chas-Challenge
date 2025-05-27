@@ -50,8 +50,11 @@ const InfoCardSection = () => {
   return (
     <View style={styles.container}>
       <ScrollView
-        horizontal={true}
-        contentContainerStyle={[styles.scrollContent]}
+        horizontal
+        contentContainerStyle={styles.scrollContent}
+        accessible={true}
+        accessibilityRole="scrollbar"
+        accessibilityLabel="Informationskort om växthus"
       >
         {plantInfo.map((item) => (
           <InfoCard
@@ -59,6 +62,9 @@ const InfoCardSection = () => {
             title={item.title}
             info={item.info}
             image={item.image}
+            accessible={true}
+            accessibilityLabel={`${item.title}. ${item.info}`}
+            accessibilityRole="summary"
           />
         ))}
       </ScrollView>

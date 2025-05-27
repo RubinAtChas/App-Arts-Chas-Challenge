@@ -9,8 +9,6 @@ import { useUser } from "../context/UserContext";
 import Dashboard from "../screens/Dashboard";
 import Plants from "../screens/Plants";
 import Profile from "../screens/Profile";
-import Settings from "../screens/Settings";
-import Notifications from "../screens/Notifications";
 import Login from "../screens/Login";
 import PlantDetails from "../screens/PlantDetails";
 import AddPlant from "../components/AddPlant";
@@ -64,19 +62,6 @@ const TabNavigator = () => {
           ),
         }}
       />
-      {/* <Tab.Screen
-        name="Alerts"
-        component={Notifications}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="bell"
-              color={color}
-              size={size}
-            />
-          ),
-        }}
-      /> */}
       <Tab.Screen
         name="Profile"
         component={Profile}
@@ -86,19 +71,6 @@ const TabNavigator = () => {
           ),
         }}
       />
-      {/* <Tab.Screen
-        name="Settings"
-        component={Settings}
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name="tools"
-              color={color}
-              size={size}
-            />
-          ),
-        }}
-      /> */}
     </Tab.Navigator>
   );
 };

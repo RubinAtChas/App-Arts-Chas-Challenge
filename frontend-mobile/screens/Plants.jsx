@@ -1,4 +1,10 @@
-import { StyleSheet, SafeAreaView, ScrollView, View } from "react-native";
+import {
+  StyleSheet,
+  SafeAreaView,
+  ScrollView,
+  View,
+  Platform,
+} from "react-native";
 import { useEffect, useState } from "react";
 import { lightTheme } from "../theme/colors";
 import PlantFilter from "../components/PlantFilter";
@@ -20,8 +26,16 @@ const Plants = () => {
   }, [userId, userPlants]);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView contentContainerStyle={styles.content}>
+    <SafeAreaView
+      style={styles.container}
+      accessible={true}
+      accessibilityLabel="Växtöversiktsskärm"
+    >
+      <ScrollView
+        contentContainerStyle={styles.content}
+        accessible={true}
+        accessibilityLabel="Lista över växthus och växter"
+      >
         <View style={styles.PlantFilter}>
           <PlantFilter />
         </View>
@@ -32,8 +46,13 @@ const Plants = () => {
               id: item.flower_id,
               name: item.flower_name,
               lastWatered: item.last_watered,
+              wateringInterval: item.watering_interval,
               moisture: item.moisture,
-              sunlight: item.sunlight,
+              light: item.light,
+              temp: item.temp,
+              nitrogen: item.nitrogen_level,
+              phosphor: item.phosphor,
+              potassium: item.potassium,
               status: "Healthy",
             }))}
           />
@@ -83,7 +102,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: lightTheme.primary,
-    marginBottom: 45, //la till margin för annars hamnade knappen under navbar
+    marginBottom: Platform.OS === "ios" ? 80 : 45,
   },
   content: {},
   PlantFilter: {
