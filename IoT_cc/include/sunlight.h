@@ -19,18 +19,21 @@ void initializeLightSensor()
   ltr.setMeasurementRate(LTR3XX_MEASRATE_50);
 }
 
-  // ----- LÄS LJUSSENSOR -----
-  int readSunlight()
-  {
+// ----- LÄS LJUSSENSOR -----
+int readSunlight()
+{
   uint16_t ch0 = 0, ch1 = 0, approx_PAR = 0;
   if (ltr.newDataAvailable())
   {
     if (ltr.readBothChannels(ch0, ch1))
     {
       approx_PAR = (ch0 > ch1) ? (ch0 - ch1) : 0;
-      Serial.print("Ljus (CH0): "); Serial.print(ch0);
-      Serial.print("  IR (CH1): "); Serial.print(ch1);
-      Serial.print("  Synligt (approx PAR): "); Serial.println(approx_PAR);
+      Serial.print("Ljus (CH0): ");
+      Serial.print(ch0);
+      Serial.print("  IR (CH1): ");
+      Serial.print(ch1);
+      Serial.print("  Synligt (approx PAR): ");
+      Serial.println(approx_PAR);
     }
     else
     {

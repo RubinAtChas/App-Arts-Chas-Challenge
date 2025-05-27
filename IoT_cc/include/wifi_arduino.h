@@ -9,19 +9,19 @@
 
 void ConnectToWifi()
 {
-    WiFi.disconnect();
-    WiFi.end();
-    delay(1000);
-    int numberOfAttempts = 0;
-    while (WiFi.status() != WL_CONNECTED)
+  WiFi.disconnect();
+  WiFi.end();
+  delay(1000);
+  int numberOfAttempts = 0;
+  while (WiFi.status() != WL_CONNECTED)
+  {
+    Serial.println("Attempting to connect to Wi-Fi.");
+    WiFi.begin(SSID, PASSWORD);
+    if (WiFi.status() == WL_CONNECTED)
     {
-        Serial.println("Attempting to connect to Wi-Fi.");
-        WiFi.begin(SSID, PASSWORD);
-        if (WiFi.status() == WL_CONNECTED)
-    {
-        Serial.println("Connected!");
-        numberOfAttempts = 0;
-        return;
+      Serial.println("Connected!");
+      numberOfAttempts = 0;
+      return;
     }
     Serial.print("Attempt: ");
     Serial.print(numberOfAttempts + 1);
@@ -31,12 +31,12 @@ void ConnectToWifi()
     Serial.print("\n");
     if (numberOfAttempts >= WIFI_RECONNECTION_ATTEMPTS)
     {
-        Serial.println("Connection failed.");
-        return;
+      Serial.println("Connection failed.");
+      return;
     }
     numberOfAttempts++;
     delay(WIFI_TIME_BETWEEN_RECONNECTION);
-    }
+  }
 }
 
 void reconnectToWifi()

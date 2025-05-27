@@ -5,10 +5,22 @@
 WiFiClient wifiClient;
 HttpClient client = HttpClient(wifiClient, LOCALHOST_URL, PORT);
 
-void sendToSupabase(float* tempC, int light, char* rain, int moisture) 
+void sendToSupabase(float *tempC, int light, char *rain, int moisture)
 {
-    // String jsonBody = "{\"moisture\":35,\"flower_temp\":13,\"dirt_temp\":18,\"sunlight\":\"full\",\"nitrogen_level\":45,\"phosphor\":12,\"potassium\":29}";
-    String jsonBody = "{\"sunlight\":\"light\"}";
+    // String rainString = rain;
+    //  String jsonBody = "{\"moisture\":35,\"flower_temp\":13,\"dirt_temp\":18,\"sunlight\":\"full\",\"nitrogen_level\":45,\"phosphor\":12,\"potassium\":29}";
+    String jsonBody = "{";
+    // jsonBody += "\"moisture\":" + String((int)moisture);
+    jsonBody += "\"temp\": " + String(22.2);
+    jsonBody += "\"temp" : " + String 20.7
+                           // jsonBody += "\"last_watered\":\"" + rainString + "\"";
+                           // jsonBody+= "\"last_watered\":\"" + String(rain) + "\"";
+                           // json += "\"aqi\":" + String(aqi) + ",";
+                           // json += "\"tvoc\":" + String(tvoc) + ",";
+                           // json += "\"eco2\":" + String(eco2);
+                           jsonBody += "}";
+
+    Serial.println(jsonBody);
 
     client.beginRequest();
     client.put(PATH);

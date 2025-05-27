@@ -14,7 +14,7 @@
 int sunlightReading = 0;
 float tempertureReading = 0;
 int moistureReading = 0;
-char rainReading[] = "";
+char rainReading[50] = "";
 
 WiFiServer server(80); // Webserver på port 80
 
@@ -26,27 +26,27 @@ void setup()
     delay(10);
   }
 
-  initializeLightSensor();
-
+  // initializeLightSensor();
+  ConnectToWifi();
+  initializeTimeClient();
   pinMode(rainDigitalPin, INPUT);
 
-  ConnectToWifi();
   server.begin();
   Serial.println("Server Startad");
 }
 
 void loop()
 {
-  sunlightReading = readSunlight();
-  readRainDate(rainReading);
+  // sunlightReading = readSunlight();
+
   readTemperature(&tempertureReading);
   moistureReading = readMoisture();
-
+  readRainDate(rainReading);
 
   // Skicka till Supabase
   sendToSupabase(&tempertureReading, sunlightReading, rainReading, moistureReading);
 
   reconnectToWifi();
 
-  delay(1000); // Vänta 1 sek innan nästa mätning
+  delay(5000); // Vänta 10 sek innan nästa mätning
 }
