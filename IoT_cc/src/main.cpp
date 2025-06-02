@@ -16,8 +16,6 @@ float tempertureReading = 0;
 int moistureReading = 0;
 char rainReading[50] = "";
 
-WiFiServer server(80); // Webserver på port 80
-
 void setup()
 {
   Serial.begin(9600);
@@ -30,23 +28,30 @@ void setup()
   ConnectToWifi();
   initializeTimeClient();
   pinMode(rainDigitalPin, INPUT);
-
-  server.begin();
-  Serial.println("Server Startad");
 }
+
+unsigned long lastSendTime = 0;
+const unsigned long sendInterval = 5000; // 10 seconds
 
 void loop()
 {
-  // sunlightReading = readSunlight();
 
-  readTemperature(&tempertureReading);
-  moistureReading = readMoisture();
-  readRainDate(rainReading);
+  unsigned long currentTime = millis();
 
-  // Skicka till Supabase
-  sendToSupabase(&tempertureReading, sunlightReading, rainReading, moistureReading);
+  if (currentTime - lastSendTime >= sendInterval)
+  {
 
-  reconnectToWifi();
+    lastSendTime = currentTime;
+    // sunlightReading = readSunlight();
+    readTemperature(&tempertureReading);
+    moistureReading = readMoisture();
+    readRainDate(rainReading);
 
-  delay(5000); // Vänta 10 sek innan nästa mätning
+    // Skicka till Supabase
+    sendToSupabase(&tempertureReading, sunlightReading, rainReading, moistureReading);
+
+    reconnectToWifi();
+
+    // delay(5000); // Vänta 10 sek innan nästa mätning
+  }
 }
