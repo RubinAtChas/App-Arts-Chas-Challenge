@@ -7,7 +7,7 @@ test("Renderar ett kort och verifierar att titeln är korrekt", () => {
   expect(card).toBeTruthy();
 });
 
-test("Renderar bilden korrekt", () => {
+test("Verifierar att ikonen renderas korrekt", () => {
   const imageSource = require("../assets/icon.png");
   const { getByRole } = render(
     <InfoCard
